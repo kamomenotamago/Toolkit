@@ -1,0 +1,26 @@
+<keyframes>
+    <key>
+        <switchName />
+        <max>00:00:02:305</max>
+        <time>00:00:00:526</time>
+        <value>0.524999976</value>
+    </key>
+    <key>
+        <switchName />
+        <max>00:00:01:243</max>
+        <time>00:00:01:243</time>
+        <value>0.699999988</value>
+    </key>
+    <key>
+        <switchName />
+        <max>00:00:03:099</max>
+        <time>00:00:03:099</time>
+        <value>0.699999988</value>
+    </key>
+    <key>
+        <switchName />
+        <max>00:00:05:648</max>
+        <time>00:00:04:215</time>
+        <value>0.574999988</value>
+    </key>
+</keyframes>

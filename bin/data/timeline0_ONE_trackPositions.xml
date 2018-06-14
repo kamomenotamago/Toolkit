@@ -1,0 +1,110 @@
+<positions>
+    <element name="SmartHair 1">
+        <x>0.000000000</x>
+        <y>263.000000000</y>
+        <width>200.000000000</width>
+        <height>36.000000000</height>
+    </element>
+    <element name="SmartHair 2">
+        <x>0.000000000</x>
+        <y>323.000000000</y>
+        <width>200.000000000</width>
+        <height>38.000000000</height>
+    </element>
+    <element name="SmartHair 3">
+        <x>0.000000000</x>
+        <y>385.000000000</y>
+        <width>200.000000000</width>
+        <height>42.000000000</height>
+    </element>
+    <element name="SmartHair 4">
+        <x>0.000000000</x>
+        <y>451.000000000</y>
+        <width>200.000000000</width>
+        <height>36.000000000</height>
+    </element>
+    <element name="audio">
+        <x>0.000000000</x>
+        <y>52.000000000</y>
+        <width>1024.000000000</width>
+        <height>40.000000000</height>
+    </element>
+    <element name="audio2">
+        <x>0.000000000</x>
+        <y>52.000000000</y>
+        <width>200.000000000</width>
+        <height>187.000000000</height>
+    </element>
+    <element name="ausio">
+        <x>0.000000000</x>
+        <y>52.000000000</y>
+        <width>1024.000000000</width>
+        <height>40.000000000</height>
+    </element>
+    <element name="bangs5">
+        <x>0.000000000</x>
+        <y>181.000000000</y>
+        <width>1024.000000000</width>
+        <height>80.000000000</height>
+    </element>
+    <element name="color5">
+        <x>0.000000000</x>
+        <y>412.000000000</y>
+        <width>1024.000000000</width>
+        <height>40.000000000</height>
+    </element>
+    <element name="curves5">
+        <x>0.000000000</x>
+        <y>285.000000000</y>
+        <width>1024.000000000</width>
+        <height>40.000000000</height>
+    </element>
+    <element name="flag5">
+        <x>0.000000000</x>
+        <y>487.000000000</y>
+        <width>1024.000000000</width>
+        <height>33.000000000</height>
+    </element>
+    <element name="lfo5">
+        <x>0.000000000</x>
+        <y>349.000000000</y>
+        <width>1024.000000000</width>
+        <height>39.000000000</height>
+    </element>
+    <element name="switche">
+        <x>0.000000000</x>
+        <y>181.000000000</y>
+        <width>1232.000000000</width>
+        <height>40.000000000</height>
+    </element>
+    <element name="switche2">
+        <x>0.000000000</x>
+        <y>245.000000000</y>
+        <width>1232.000000000</width>
+        <height>40.000000000</height>
+    </element>
+    <element name="switche4">
+        <x>0.000000000</x>
+        <y>181.000000000</y>
+        <width>1024.000000000</width>
+        <height>52.000000000</height>
+    </element>
+    <element name="switche5">
+        <x>0.000000000</x>
+        <y>285.000000000</y>
+        <width>1024.000000000</width>
+        <height>40.000000000</height>
+    </element>
+    <element name="switche6">
+        <x>0.000000000</x>
+        <y>181.000000000</y>
+        <width>1024.000000000</width>
+        <height>45.000000000</height>
+    </element>
+    <element name="video">
+        <x>0.000000000</x>
+        <y>52.000000000</y>
+        <width>1024.000000000</width>
+        <height>50.000000000</height>
+    </element>
+</positions>
