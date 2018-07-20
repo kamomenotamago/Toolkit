@@ -29,11 +29,32 @@ class ofApp : public ofBaseApp{
     ofxTimeline timeline;
     ofSerial serial;
     ofxTextInputField monoLineTextInput;
-    void bang(ofxTLBangEventArgs& args);//Band処理メソッド
-    void receivedBang(ofxTLBangEventArgs & args);
-    int size;
-    string text;
-
+    
+    void txtsend(ofxTLSwitchEventArgs & args);//Switch入力値処理
+    string text1;
+    string text2;
+    string text3;
+    string text4;
+    string text5;
+    string text6;
+    string text7;
+    string text8;
+    string text9;
+    string text10;
+    string text11;
+    string text12;
+    unsigned char num1;
+    unsigned char num2;
+    unsigned char num3;
+    unsigned char num4;
+    unsigned char num5;
+    unsigned char num6;
+    unsigned char num7;
+    unsigned char num8;
+    unsigned char num9;
+    unsigned char num10;
+    unsigned char num11;
+    unsigned char num12;
     
     //機能ボタン
     ofPoint circleButton_loop,circleButton_clear,circleButton_save;
@@ -53,4 +74,6 @@ class ofApp : public ofBaseApp{
     LineConstruction line_con;
     
     int r,g,b,a;
+    
+    //int currentamount;
 };

@@ -1,6 +1,10 @@
 #include "ofApp.h"
+
 ofTrueTypeFont font;
 ofVec2f location;
+
+//スイッチイベント定義
+ofxTLSwitchEventArgs args;
 //--------------------------------------------------------------
 
 void ofApp::setup(){
@@ -27,8 +31,9 @@ void ofApp::setup(){
     ofxTimeline::removeCocoaMenusFromGlut("Toolkit2");
     ofSetWindowShape(1500, 1000);
     ofBackground(50);
+    ofSetVerticalSync(false);
     timeline.setup();
-    timeline.setFrameRate(30);
+    timeline.setFrameRate(50);
     timeline.setDurationInFrames(2000);
     timeline.setPageName("1");
     timeline.saveTracksToFolder("/Users/Risa/Desktop/oF");//なんかフォルダーに保存できる
@@ -36,11 +41,9 @@ void ofApp::setup(){
     timeline.setOffset(location);
     timeline.setWidth(1300);
     timeline.setHeight(900);
-
-
     
     //音楽
-    timeline.addAudioTrack("audio2","futta-fly.wav");
+    timeline.addAudioTrack("audio2","ele.wav");
     
     //スイッチ
     timeline.addSwitches("SmartHair 1");
@@ -65,7 +68,7 @@ void ofApp::setup(){
     
     //2ページ目
     timeline.addPage("2");
-    timeline.addAudioTrack("audio2","futta-fly.wav");
+    timeline.addAudioTrack("audio2","ele.wav");
     timeline.addSwitches("SmartHair 5");
     timeline.addSwitches("SmartHair 6");
     timeline.addSwitches("SmartHair 7");
@@ -73,7 +76,7 @@ void ofApp::setup(){
     
     //3ページ目
     timeline.addPage("3");
-    timeline.addAudioTrack("audio2","futta-fly.wav");
+    timeline.addAudioTrack("audio2","ele.wav");
     timeline.addSwitches("SmartHair 9");
     timeline.addSwitches("SmartHair 10");
     timeline.addSwitches("SmartHair 11");
@@ -92,18 +95,19 @@ void ofApp::setup(){
     monoLineTextInput.setFont(font);
     
     //シリアルセット
-    serial.setup("/dev/cu.usbmodem1411",9600);
-}
+    serial.setup("/dev/cu.usbmodem1411",115200);
+    
+    //Switch数字反映メソッドリスナー登録
+    ofAddListener(timeline.events().switched, this,&ofApp::txtsend);//Switchが発生する度にこのメソッドが呼ばれる
 
+}
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
     
     r = timeline.getColor("color").r;
     g = timeline.getColor("color").g;
@@ -112,6 +116,7 @@ void ofApp::draw(){
     ofSetColor(ofColor(r,g,b,a));
     ofBox(290,700,10);
     
+   
     //機能ボタン
     ofSetColor(ofColor::whiteSmoke);
     font.drawString("Loop",1347,390);
@@ -209,114 +214,171 @@ void ofApp::draw(){
     //タイムライン
     timeline.draw();
 
+    //スイッチイベント定義
+    ofxTLSwitchEventArgs args;
+    
     //スイッチからシリアル通信
-    //switch1 & 13番pin
+    //switch1 & 1番pin
     if(timeline.isSwitchOn("SmartHair 1")){
-        serial.writeByte('1');
+        bool byteWasWritten1 = serial.writeByte(1);
+        bool byteWasWritten2 = serial.writeByte(num1);
+        //Switch数値int型で表示
+        ofDrawBitmapString(num1,1300,500);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(1);
+        bool byteWasWritten2 = serial.writeByte(0);
     }
-    else{
-        serial.writeByte('2');
-    }
-    //switch2 &　12番pin
+    
+    //switch2 &　2番pin
     if(timeline.isSwitchOn("SmartHair 2")){
-        serial.writeByte('3');
-    }
-    else{
-        serial.writeByte('4');
-    }
-    
-    //switch3 &　11番pin
-    if(timeline.isSwitchOn("SmartHair 3")){
-        serial.writeByte('5');
-        
-    }
-    else{
-        serial.writeByte('6');
-    }
-    
-    //switch4 &　10番pin
-    if(timeline.isSwitchOn("SmartHair 4")){
-        serial.writeByte('7');
-    }
-    else{
-        serial.writeByte('8');
-    }
-    
-    //switch1 & 9番pin
-    if(timeline.isSwitchOn("SmartHair 5")){
-        serial.writeByte('9');
-    }
-    else{
-        serial.writeByte('a');
-    }
-    //switch2 &　8番pin
-    if(timeline.isSwitchOn("SmartHair 6")){
-        serial.writeByte('b');
-    }
-    else{
-        serial.writeByte('c');
-    }
-    
-    //switch3 &　7番pin
-    if(timeline.isSwitchOn("SmartHair 7")){
-        serial.writeByte('d');
-    }
-    else{
-        serial.writeByte('e');
-    }
-    
-    //switch4 &　6番pin
-    if(timeline.isSwitchOn("SmartHair 8")){
-        serial.writeByte('f');
-    }
-    else{
-        serial.writeByte('g');
-    }
-    
-    //switch1 & 5番pin
-    if(timeline.isSwitchOn("SmartHair 9")){
-        serial.writeByte('h');
-    }
-    else{
-        serial.writeByte('i');
-    }
-    //switch2 &　4番pin
-    if(timeline.isSwitchOn("SmartHair 10")){
-        serial.writeByte('j');
-    }
-    else{
-        serial.writeByte('k');
+        bool byteWasWritten1 = serial.writeByte(2);
+        bool byteWasWritten2 = serial.writeByte(num2);
+
+        //Switch数値int型で表示
+        ofDrawBitmapString(num2,1300,550);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(2);
+        bool byteWasWritten2 = serial.writeByte(0);
     }
     
     //switch3 &　3番pin
+    if(timeline.isSwitchOn("SmartHair 3")){
+        bool byteWasWritten1 = serial.writeByte(3);
+        bool byteWasWritten2 = serial.writeByte(num3);
+        //Switch数値int型で表示
+        ofDrawBitmapString(num3,1300,600);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(3);
+        bool byteWasWritten2 = serial.writeByte(0);
+    }
+    
+    //switch4 &　4番pin
+    if(timeline.isSwitchOn("SmartHair 4")){
+        bool byteWasWritten1 = serial.writeByte(4);
+        bool byteWasWritten2 = serial.writeByte(num4);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(4);
+        bool byteWasWritten2 = serial.writeByte(0);
+    }
+    
+    //switch5 & 5番pin
+    if(timeline.isSwitchOn("SmartHair 5")){
+        bool byteWasWritten1 = serial.writeByte(5);
+        bool byteWasWritten2 = serial.writeByte(num5);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(5);
+        bool byteWasWritten2 = serial.writeByte(0);
+    }
+    //switch6 &　6番pin
+    if(timeline.isSwitchOn("SmartHair 6")){
+        bool byteWasWritten1 = serial.writeByte(6);
+        bool byteWasWritten2 = serial.writeByte(num6);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(6);
+        bool byteWasWritten2 = serial.writeByte(0);
+    }
+    
+    //switch7 &　7番pin
+    if(timeline.isSwitchOn("SmartHair 7")){
+        bool byteWasWritten1 = serial.writeByte(7);
+        bool byteWasWritten2 = serial.writeByte(num7);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(7);
+        bool byteWasWritten2 = serial.writeByte(0);
+    }
+    
+    //switch8 &　8番pin
+    if(timeline.isSwitchOn("SmartHair 8")){
+        bool byteWasWritten1 = serial.writeByte(8);
+        bool byteWasWritten2 = serial.writeByte(num8);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(8);
+        bool byteWasWritten2 = serial.writeByte(0);
+    }
+    
+    //switch9 & 9番pin
+    if(timeline.isSwitchOn("SmartHair 9")){
+        bool byteWasWritten1 = serial.writeByte(9);
+        bool byteWasWritten2 = serial.writeByte(num9);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(9);
+        bool byteWasWritten2 = serial.writeByte(0);
+    }
+    //switch10 &　10番pin
+    if(timeline.isSwitchOn("SmartHair 10")){
+        bool byteWasWritten1 = serial.writeByte(10);
+        bool byteWasWritten2 = serial.writeByte(num10);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(10);
+        bool byteWasWritten2 = serial.writeByte(0);
+    }
+    
+    //switch11 &　11番pin
     if(timeline.isSwitchOn("SmartHair 11")){
-        serial.writeByte('l');
-    }
-    else{
-        serial.writeByte('m');
-    }
-    
-    //switch4 &　2番pin
-    if(timeline.isSwitchOn("SmartHair 12")){
-        serial.writeByte('n');
-    }
-    else{
-        serial.writeByte('o');
-    }
-    
-    
+        bool byteWasWritten1 = serial.writeByte(11);
+        bool byteWasWritten2 = serial.writeByte(num11);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(11);
+        bool byteWasWritten2 = serial.writeByte(0);
 
+    }
+    
+    //switch12 &　12番pin
+    if(timeline.isSwitchOn("SmartHair 12")){
+        bool byteWasWritten1 = serial.writeByte(12);
+        bool byteWasWritten2 = serial.writeByte(num12);
+    }else{
+        bool byteWasWritten1 = serial.writeByte(12);
+        bool byteWasWritten2 = serial.writeByte(0);
+    }
 }
+
+void ofApp::txtsend(ofxTLSwitchEventArgs & args){
+    
+    if(args.track->getName() == "SmartHair 1"){
+        text1 = args.switchName;
+        num1 = atoi(text1.c_str());
+    }else if(args.track->getName() == "SmartHair 2"){
+        text2 = args.switchName;
+        num2 = atoi(text2.c_str());
+    }else if(args.track->getName() == "SmartHair 3"){
+        text3 = args.switchName;
+        num3 = atoi(text3.c_str());
+    }else if(args.track->getName() == "SmartHair 4"){
+        text4 = args.switchName;
+        num4 = atoi(text4.c_str());
+    }else if(args.track->getName() == "SmartHair 5"){
+        text5 = args.switchName;
+        num5 = atoi(text5.c_str());
+    }else if(args.track->getName() == "SmartHair 6"){
+        text6 = args.switchName;
+        num6 = atoi(text6.c_str());
+    }else if(args.track->getName() == "SmartHair 7"){
+        text7 = args.switchName;
+        num7 = atoi(text7.c_str());
+    }else if(args.track->getName() == "SmartHair 8"){
+        text8 = args.switchName;
+        num8 = atoi(text8.c_str());
+    }else if(args.track->getName() == "SmartHair 9"){
+        text9 = args.switchName;
+        num9 = atoi(text9.c_str());
+    }else if(args.track->getName() == "SmartHair 10"){
+        text10 = args.switchName;
+        num10 = atoi(text10.c_str());
+    }else if(args.track->getName() == "SmartHair 11"){
+        text11 = args.switchName;
+        num11 = atoi(text11.c_str());
+    }else if(args.track->getName() == "SmartHair 12"){
+        text12 = args.switchName;
+        num12 = atoi(text12.c_str());
+    }
+   
+}
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    /*if(key=='a'){
-        serial.writeByte('2');
-    }
-    
-    if(key=='s'){
-        serial.writeByte('3');
-    }*/
+
 }
 
 //--------------------------------------------------------------
@@ -331,7 +393,6 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
 }
 
 //--------------------------------------------------------------
