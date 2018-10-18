@@ -1,1 +1,14 @@
-<keyframes />
+<keyframes>
+    <key>
+        <sampleX>0.135037482</sampleX>
+        <sampleY>0.589999914</sampleY>
+        <time>00:00:03:938</time>
+        <value>0.600000024</value>
+    </key>
+    <key>
+        <sampleX>0.555024922</sampleX>
+        <sampleY>0.884999871</sampleY>
+        <time>00:00:10:892</time>
+        <value>0.649999976</value>
+    </key>
+</keyframes>

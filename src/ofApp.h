@@ -31,6 +31,7 @@ class ofApp : public ofBaseApp{
     ofxTextInputField monoLineTextInput;
     
     void txtsend(ofxTLSwitchEventArgs & args);//Switch入力値処理
+    
     string text1;
     string text2;
     string text3;
@@ -75,5 +76,33 @@ class ofApp : public ofBaseApp{
     
     int r,g,b,a;
     
+    //アクチュエーター選定ボタン
+    ofPoint actuator_power,actuator_speed,actuator_length,actuator_color;
+    ofPoint actuator_powersenter,actuator_speedsenter,actuator_lengthsenter,actuator_colorsenter;
+    int actuatorpowerButton, actuatorspeedButton, actuatorlengthButton, actuatorcolorButton;
+    
+    //移動番号ボタン
+    ofPoint circle1,circle2,circle3,circle4,circle5,circle6;
+    int radius3;
+    //マウスの位置
+    float xPos1=450;
+    float yPos1=120;
+    float xPos2=530;
+    float yPos2=120;
+    float xPos3=610;
+    float yPos3=120;
+    float xPos4=450;
+    float yPos4=220;
+    float xPos5=530;
+    float yPos5=220;
+    float xPos6=610;
+    float yPos6=220;
+    bool circle1Button,circle2Button,circle3Button,circle4Button,circle5Button,circle6Button;
     //int currentamount;
+    
+    //ビデオ格納
+    ofVideoPlayer smarthairmoving1;
+    ofVideoPlayer smarthairmoving2;
+    ofVideoPlayer smarthairmoving3;
+    
 };
