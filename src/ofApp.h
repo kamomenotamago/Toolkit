@@ -58,8 +58,8 @@ class ofApp : public ofBaseApp{
     unsigned char num12;
     
     //機能ボタン
-    ofPoint circleButton_loop,circleButton_clear,circleButton_save;
-    bool loopCircleButton,clearCircleButton,saveCircleButton;
+    ofPoint circleButton_loop,circleButton_clear,circleButton_save,circleButton_load;
+    bool loopCircleButton,clearCircleButton,saveCircleButton,loadCircleButton;
     int radius;
     
     //構造選択ボタン

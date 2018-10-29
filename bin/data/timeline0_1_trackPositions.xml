@@ -1,0 +1,50 @@
+<positions>
+    <element name="No1">
+        <x>10.000000000</x>
+        <y>396.000000000</y>
+        <width>1300.000000000</width>
+        <height>28.000000000</height>
+    </element>
+    <element name="No2">
+        <x>10.000000000</x>
+        <y>448.000000000</y>
+        <width>1300.000000000</width>
+        <height>34.000000000</height>
+    </element>
+    <element name="No3">
+        <x>10.000000000</x>
+        <y>506.000000000</y>
+        <width>1300.000000000</width>
+        <height>33.000000000</height>
+    </element>
+    <element name="No4">
+        <x>10.000000000</x>
+        <y>563.000000000</y>
+        <width>1300.000000000</width>
+        <height>29.000000000</height>
+    </element>
+    <element name="No5">
+        <x>10.000000000</x>
+        <y>616.000000000</y>
+        <width>1300.000000000</width>
+        <height>34.000000000</height>
+    </element>
+    <element name="No6">
+        <x>10.000000000</x>
+        <y>674.000000000</y>
+        <width>1300.000000000</width>
+        <height>35.000000000</height>
+    </element>
+    <element name="audio2">
+        <x>10.000000000</x>
+        <y>352.000000000</y>
+        <width>1300.000000000</width>
+        <height>20.000000000</height>
+    </element>
+    <element name="color">
+        <x>10.000000000</x>
+        <y>733.000000000</y>
+        <width>1300.000000000</width>
+        <height>40.000000000</height>
+    </element>
+</positions>

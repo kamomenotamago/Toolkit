@@ -14,13 +14,14 @@ ofxTLSwitchEventArgs args;
 void ofApp::setup(){
 
     //機能ボタン
-    circleButton_loop.set(1375,400);
+    circleButton_loop.set(1375,350);
+    circleButton_save.set(1375,470);
+    circleButton_load.set(1375,590);
     circleButton_clear.set(1375,725);
-    circleButton_save.set(1375,558);
     loopCircleButton = false;
     clearCircleButton = false;
     saveCircleButton = false;
-    radius = 50;
+    radius = 40;
     
     //構造選択ボタン
     circle.set(70,100);
@@ -78,7 +79,6 @@ void ofApp::setup(){
     timeline.setFrameRate(50);
     timeline.setDurationInFrames(4000);
     timeline.setPageName("1");
-    timeline.saveTracksToFolder("/Users/Risa/Desktop/oF");//なんかフォルダーに保存できる
     location = ofVec2f(10,300); //画面の中心に
     timeline.setOffset(location);
     timeline.setWidth(1300);
@@ -174,13 +174,22 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
+    //色
     r = timeline.getColor("color").r;
     g = timeline.getColor("color").g;
     b = timeline.getColor("color").b;
     a = timeline.getColor("color").a;
+    
+    bool byteWasWritten1 = serial.writeByte(14);
+    bool byteWasWritten2 = serial.writeByte(r);
+    bool byteWasWritten3 = serial.writeByte(g);
+    bool byteWasWritten4 = serial.writeByte(b);
+    //ofSetColor(ofColor::white);
+    //ofDrawBitmapString(r,1300,550);
+    
     ofSetColor(ofColor(r,g,b,a));
     //ofBox(290,700,10);
+    
     
     ofSetColor(47);
     ofDrawRectangle(20,20,670,265);
@@ -268,8 +277,9 @@ void ofApp::draw(){
     
     //機能ボタン
     ofSetColor(ofColor::whiteSmoke);
-    font.drawString("Loop",1347,340);
-    font.drawString("Save",1349,503);
+    font.drawString("Loop",1347,300);
+    font.drawString("Save",1349,420);
+    font.drawString("Load",1347,540);
     font.drawString("Clear",1346,670);
     font.drawString("Actuator",720,50);
     font.drawString("Power",1120,100);
@@ -303,13 +313,13 @@ void ofApp::draw(){
         ofSetColor(ofColor::sandyBrown);
         ofCircle(circleButton_loop, radius);
         ofSetColor(ofColor::whiteSmoke);
-        font.drawString("OFF",1352,410);
+        font.drawString("OFF",1352,360);
     }else{
         timeline.setLoopType(OF_LOOP_NONE);
         ofSetColor(ofColor::dimGray);
         ofCircle(circleButton_loop, radius);
         ofSetColor(ofColor::whiteSmoke);
-        font.drawString("ON",1357,410);
+        font.drawString("ON",1357,360);
     }
   
     //クリアボタン詳細
@@ -321,11 +331,20 @@ void ofApp::draw(){
     }
     ofCircle(circleButton_clear, radius);
     
+    //ロードボタン詳細
+    if (loadCircleButton){
+        ofSetColor(ofColor::sandyBrown);
+        timeline.loadTracksFromFolder("project/");//フォルダー指定！！
+    }else{
+        ofSetColor(ofColor::dimGray);
+    }
+    ofCircle(circleButton_load, radius);
+    
     
     //セーブボタン詳細
     if (saveCircleButton){
         ofSetColor(ofColor::sandyBrown);
-        timeline.save();
+        timeline.saveTracksToFolder("project");//なんかフォルダーに保存できる
     }else{
         ofSetColor(ofColor::dimGray);
     }
@@ -617,6 +636,10 @@ void ofApp::mousePressed(int x, int y, int button){
     
     if (circleButton_clear.distance(ofPoint(x,y)) < radius) {
         clearCircleButton = !clearCircleButton;
+    }
+    
+    if (circleButton_load.distance(ofPoint(x,y)) < radius) {
+        loadCircleButton = !loadCircleButton;
     }
     
     if (circleButton_save.distance(ofPoint(x,y)) < radius) {
